@@ -93,12 +93,13 @@ if not os.path.exists("mlp2.joblib"):
     mlp2.fit(X_train, y_train)
     print("Training set score: %f" % mlp2.score(X_train, y_train))
     print("Test set score: %f" % mlp2.score(X_test, y_test))
-    y_pred = mlp2.predict(X_test)
-    cm = confusion_matrix(y_test, y_pred)
-    cv2.imwrite("confusion matrix2.jpg", cm)
+    
     dump(mlp2, "mlp2.joblib")
 else:
     mlp2 = load("mlp2.joblib")
+    y_pred = mlp2.predict(X_test)
+    cm = confusion_matrix(y_test, y_pred)
+    cv2.imwrite("confusion matrix2.jpg", cm)
 
 # STEP 4.1
 # Puts all the data in the "files" variable
