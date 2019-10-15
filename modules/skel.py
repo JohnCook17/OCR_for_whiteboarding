@@ -3,15 +3,15 @@
 import cv2
 import numpy as np
 
-def skel(img):
+def skeleton(img):
     size = np.size(img)
     skel = np.zeros(img.shape,np.uint8)
 
-    ret,img = cv2.threshold(img,127,255,0)
+    img = cv2.threshold(img,127,255,0)
     element = cv2.getStructuringElement(cv2.MORPH_CROSS,(3,3))
     done = False
 
-    while( not done):
+    while(not done):
         eroded = cv2.erode(img,element)
         temp = cv2.dilate(eroded,element)
         temp = cv2.subtract(img,temp)
