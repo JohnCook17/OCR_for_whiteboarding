@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 import os
-"""
-A Demo of the program
-"""
 try:
     from sklearn.neural_network import MLPClassifier
 except ImportError:
@@ -36,17 +33,17 @@ def demo(x_train, y_train, x_test, y_test):
                             learning_rate_init=.1)
         print("Created our first MLP network")
 
-        # STEP 3.1
+        # STEP 1.1
         mlp1.fit(x_train, y_train)
         print("Training set score: %f" % mlp1.score(x_train, y_train))
         print("Test set score: %f" % mlp1.score(x_test, y_test))
 
-        # STEP 3.2
+        # STEP 1.2
         # First let"s initialize a list with all the predicted values from the
         # training set
         y_pred = mlp1.predict(x_test)
 
-        # STEP 3.3
+        # STEP 1.3
         # You can change this to any letters that you think the neural network may
         # have confused...
         predicted_letter = "l"
@@ -67,7 +64,7 @@ def demo(x_train, y_train, x_test, y_test):
         dump(mlp1, "mlp1.joblib")
     else:
         mlp1 = load("mlp1.joblib")
-    # STEP 4.1
+    # STEP 2.1
     if not os.path.exists("lab1-neural-networks/letters_mod"):
         print("demo data not found getting data")
         # Pulls the scanned data set from GitHub
@@ -81,7 +78,7 @@ def demo(x_train, y_train, x_test, y_test):
     path, dirs, files = next(os.walk("lab1-neural-networks/letters_mod/"))
     files.sort()
 
-    # STEP 4.2
+    # STEP 2.2
     # This code processes all the scanned images and adds them to the handwritten_story
     handwritten_story = []
     for i in range(len(files)):
@@ -89,7 +86,7 @@ def demo(x_train, y_train, x_test, y_test):
         handwritten_story.append(img)
 
     print("Imported the scanned images.")
-    # STEP 4.3
+    # STEP 2.3
 
     typed_story = ""
     for letter in handwritten_story:
@@ -108,5 +105,4 @@ def demo(x_train, y_train, x_test, y_test):
             prediction = mlp1.predict(single_item_array)
             typed_story = typed_story + str(chr(prediction[0] + 96))
     print("Conversion to typed story complete!")
-    print("V2")
     print(typed_story)

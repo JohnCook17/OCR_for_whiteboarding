@@ -7,7 +7,7 @@ def skeleton(img):
     size = np.size(img)
     skel = np.zeros(img.shape,np.uint8)
 
-    img = cv2.threshold(img,127,255,0)
+    ret, img = cv2.threshold(img,127,255,0)
     element = cv2.getStructuringElement(cv2.MORPH_CROSS,(3,3))
     done = False
 
