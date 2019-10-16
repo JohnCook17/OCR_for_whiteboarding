@@ -60,5 +60,5 @@ while(my_input != "0"):
         else:
             print("changed your mind?")
     elif my_input == "5":
-        print("please put images in single letter to have them recognized.")
+        print("please put images in single_letters to have them recognized.")
     

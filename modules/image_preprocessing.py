@@ -28,7 +28,6 @@ def processing(mlp2):
     handwritten_story = []
     for i in range(len(files)):
         img = cv2.imread("single_letters/"+files[i], cv2.IMREAD_GRAYSCALE)
-        img = (255 - img)
         img = (thresh, img) = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY |
                                             cv2.THRESH_OTSU)
         cv2.imwrite("images/greyscale/gs_img" + str(i) + ".jpg", img)

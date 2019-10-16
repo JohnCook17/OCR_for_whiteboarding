@@ -30,6 +30,14 @@ def char_segmentation():
             end = w
             letter = img[0:0 + height, start:end]
             if letter.mean() > 5:
+                letter_height, letter_width = letter.shape
+                letter_top = 0
+                letter_bot = letter_height
+                while letter[letter_top: letter_top + 1, 0: letter_width].mean() == 0:
+                    letter_top += 1
+                while letter[letter_bot - 1: letter_bot, 0: letter_width].mean() == 0:
+                    letter_bot -= 1
+                letter = letter[letter_top: letter_bot, 0: letter_width]
                 cv2.imwrite("line_of_letters/" + str(letter_number) + ".jpg", letter)
                 letter_number += 1
             start = 0
