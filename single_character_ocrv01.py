@@ -30,10 +30,35 @@ y_train, y_test = y[:60000], y[60000:70000]
 X_train = X_train.reshape(60000, 784)
 X_test = X_test.reshape(10000, 784)
 
-print("Extracted our samples and divided our training and testing data sets")
-
-
-demo(X_train, y_train, X_test, y_test)
-mlp2 = training(X_train, y_train, X_test, y_test)
-processing(mlp2)
-
+my_input = "waiting"
+while(my_input != "0"):
+    print("Enter a coresponding number for that option")
+    print("1. Demo")
+    print("2. Run Main training algorithm")
+    print("3. Delete Demo training data")
+    print("4. Delete Main traning data")
+    print("5. Help")
+    print("0. exit")
+    my_input = input()
+    if my_input == "1":
+        demo(X_train, y_train, X_test, y_test)
+    elif my_input == "2":
+        mlp2 = training(X_train, y_train, X_test, y_test)
+        processing(mlp2)
+    elif my_input == "3":
+        print("Are you sure? type yes to confirm")
+        if input() == "yes":
+            print("deleting")
+            os.replace("mlp1.joblib", "backups/mlp1.joblib")
+        else:
+            print("changed your mind?")
+    elif my_input == "4":
+        print("Are you sure? type yes to confirm")
+        if input() == "yes":
+            print("deleting")
+            os.replace("mlp2.joblib", "backups/mlp2.joblib")
+        else:
+            print("changed your mind?")
+    elif my_input == "5":
+        print("please put images in single letter to have them recognized.")
+    

@@ -35,7 +35,7 @@ def training(X_train, y_train, X_test, y_test):
                                                 250,
                                                 250,),
                             max_iter=1000, alpha=1e-4,
-                            solver="sgd", verbose=10, tol=1e-4, random_state=1,
+                            solver="sgd", verbose=1, tol=1e-4, random_state=1,
                             learning_rate_init=.1)
         mlp2.fit(X_train, y_train)
         print("Training set score: %f" % mlp2.score(X_train, y_train))
