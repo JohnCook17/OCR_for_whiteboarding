@@ -4,6 +4,7 @@ import os
 from modules.demo import demo
 from modules.main_training_module import training
 from modules.image_preprocessing import processing
+from character_segmentation import char_segmentation
 try:
     from emnist import extract_training_samples
 except ImportError:
@@ -43,6 +44,7 @@ while(my_input != "0"):
     if my_input == "1":
         demo(X_train, y_train, X_test, y_test)
     elif my_input == "2":
+        char_segmentation()
         mlp2 = training(X_train, y_train, X_test, y_test)
         processing(mlp2)
     elif my_input == "3":
