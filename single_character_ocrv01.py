@@ -44,7 +44,6 @@ while(my_input != "0"):
     if my_input == "1":
         demo(X_train, y_train, X_test, y_test)
     elif my_input == "2":
-        char_segmentation()
         mlp2 = training(X_train, y_train, X_test, y_test)
         processing(mlp2)
     elif my_input == "3":
