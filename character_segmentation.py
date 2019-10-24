@@ -24,8 +24,8 @@ def combine_two_images(img1, img2, anchor_y, anchor_x):
     background_width = background.shape[1]
     foreground_height = foreground.shape[0]
     foreground_width = foreground.shape[1]
-    if foreground_height+anchor_y > background_height or
-    foreground_width+anchor_x > background_width:
+    if (foreground_height+anchor_y > background_height or
+    foreground_width+anchor_x > background_width):
         raise ValueError("The foreground image exceeds the background" +
                          "boundaries at this location")
 
@@ -96,8 +96,8 @@ def char_segmentation(img):
                         bottom = letter[letter_down: letter_down + 1,
                                         0: letter_width].mean()
                         letter_down += 1
-                    if letter_down + 1 == letter_height or
-                    letter_down + 1 > letter_height:
+                    if (letter_down + 1 == letter_height or
+                    letter_down + 1 > letter_height):
                         break
                 letter = letter[letter_up: letter_down, 0: letter_width]
                 if letter_down - letter_up > letter_width:
