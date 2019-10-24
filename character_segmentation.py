@@ -12,6 +12,7 @@ except ImportError:
     os.system("pip3 install numpy")
     import numpy
 
+
 def combine_two_images(img1, img2, anchor_y, anchor_x):
 
     foreground, background = img1.copy(), img2.copy()
@@ -23,10 +24,12 @@ def combine_two_images(img1, img2, anchor_y, anchor_x):
     background_width = background.shape[1]
     foreground_height = foreground.shape[0]
     foreground_width = foreground.shape[1]
-    if foreground_height+anchor_y > background_height or foreground_width+anchor_x > background_width:
-        raise ValueError("The foreground image exceeds the background boundaries at this location")
+    if foreground_height+anchor_y > background_height or
+    foreground_width+anchor_x > background_width:
+        raise ValueError("The foreground image exceeds the background" +
+                         "boundaries at this location")
 
-    alpha =1
+    alpha = 1
 
     # do composite at specified location
     start_y = anchor_y
@@ -34,11 +37,11 @@ def combine_two_images(img1, img2, anchor_y, anchor_x):
     end_y = anchor_y+foreground_height
     end_x = anchor_x+foreground_width
     blended_portion = cv2.addWeighted(foreground,
-                alpha,
-                background[start_y:end_y, start_x:end_x],
-                1 - alpha,
-                0,
-                background)
+                                      alpha,
+                                      background[start_y:end_y, start_x:end_x],
+                                      1 - alpha,
+                                      0,
+                                      background)
     background[start_y:end_y, start_x:end_x] = blended_portion
     return background
 
@@ -51,7 +54,7 @@ def append_space(start, end, letter_width):
     print("space vs letter below")
     print(space_width)
     print(letter_width)
-    if math.isclose(space_width, letter_width, abs_tol=1):  
+    if math.isclose(space_width, letter_width, abs_tol=1):
         print("adding space")
         return square
 
@@ -72,25 +75,29 @@ def char_segmentation(img):
             end = w
             letter = img[0: height, start:end]
             letter_height, letter_width = letter.shape
-            # make this if statment dynaic by using the letter mean at some point
+            # make this if dynamic by using the letter mean at some point
             if letter.mean() > .25:
                 M = cv2.moments(letter)
                 letter_mid = int(M["m01"] / M["m00"])
                 letter_up = letter_mid
                 letter_down = letter_mid
                 top = letter[letter_up - 1: letter_up, 0: letter_width].mean()
-                bottom = letter[letter_down: letter_down + 1, 0: letter_width].mean()
+                bottom = letter[letter_down: letter_down + 1,
+                                0: letter_width].mean()
                 while top > 0:
                     if letter_up - 1 > 0:
-                        top = letter[letter_up - 1: letter_up, 0: letter_width].mean()
+                        top = letter[letter_up - 1: letter_up,
+                                     0: letter_width].mean()
                         letter_up -= 1
                     if letter_up - 1 == 0 or letter_up - 1 < 0:
                         break
                 while bottom > 0:
                     if letter_down + 1 < letter_height:
-                        bottom = letter[letter_down: letter_down + 1, 0: letter_width].mean()
+                        bottom = letter[letter_down: letter_down + 1,
+                                        0: letter_width].mean()
                         letter_down += 1
-                    if letter_down + 1 == letter_height or letter_down + 1 > letter_height:
+                    if letter_down + 1 == letter_height or
+                    letter_down + 1 > letter_height:
                         break
                 letter = letter[letter_up: letter_down, 0: letter_width]
                 if letter_down - letter_up > letter_width:
@@ -98,7 +105,8 @@ def char_segmentation(img):
                 else:
                     square_size = 2 * letter_width
                 square = numpy.zeros((square_size, square_size))
-                letter = combine_two_images(letter, square, letter_width // 2, (letter_down - letter_up) // 2)
+                letter = combine_two_images(letter, square, letter_width // 2,
+                                            (letter_down - letter_up) // 2)
                 img_list.append(letter)
             start = 0
     cv2.imwrite("line_of_letters/inverted_and_blured.jpg", img2)

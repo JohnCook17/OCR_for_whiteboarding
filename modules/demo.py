@@ -46,16 +46,20 @@ y_train, y_test = y[:60000], y[60000:70000]
 x_train = x_train.reshape(60000, 784)
 x_test = x_test.reshape(10000, 784)
 
+
 def demo():
     """
     A demo of my machine learning program
     """
     if not os.path.exists("mlp1.joblib"):
-        # This creates our first MLP with 1 hidden layer with 50 neurons and sets
+        # This creates our first MLP 1 hidden layer with 50 neurons and sets
         # it to run through the data 20 times
-        mlp1 = MLPClassifier(hidden_layer_sizes=(50,), max_iter=20, alpha=1e-4,
-                            solver="sgd", verbose=10, tol=1e-4, random_state=1,
-                            learning_rate_init=.1)
+        mlp1 = MLPClassifier(hidden_layer_sizes=(50,),
+                             max_iter=20,
+                             alpha=1e-4,
+                             solver="sgd", verbose=10,
+                             tol=1e-4, random_state=1,
+                             learning_rate_init=.1)
         print("Created our first MLP network")
 
         # STEP 1.1
@@ -69,23 +73,23 @@ def demo():
         y_pred = mlp1.predict(x_test)
 
         # STEP 1.3
-        # You can change this to any letters that you think the neural network may
-        # have confused...
+        # You can change this to any letters that you think the neural network
+        # may have confused...
         predicted_letter = "l"
         actual_letter = "i"
         # This code counts all mistakes for the letters above
         mistake_list = []
         for i in range(len(y_test)):
             if (y_test[i] == (ord(actual_letter) - 96) and
-            y_pred[i] == (ord(predicted_letter) - 96)):
+               y_pred[i] == (ord(predicted_letter) - 96)):
                 mistake_list.append(i)
         print("There were " +
-            str(len(mistake_list)) +
-            " times that the letter " +
-            actual_letter +
-            " was predicted to be the letter " +
-            predicted_letter +
-            ".")
+              str(len(mistake_list)) +
+              " times that the letter " +
+              actual_letter +
+              " was predicted to be the letter " +
+              predicted_letter +
+              ".")
         dump(mlp1, "mlp1.joblib")
     else:
         mlp1 = load("mlp1.joblib")
@@ -104,10 +108,12 @@ def demo():
     files.sort()
 
     # STEP 2.2
-    # This code processes all the scanned images and adds them to the handwritten_story
+    # This code processes all the scanned images and adds them to the
+    # handwritten_story
     handwritten_story = []
     for i in range(len(files)):
-        img = cv2.imread("lab1-neural-networks/letters_mod/"+files[i],cv2.IMREAD_GRAYSCALE)
+        img = cv2.imread("lab1-neural-networks/letters_mod/" +
+                         files[i], cv2.IMREAD_GRAYSCALE)
         handwritten_story.append(img)
 
     print("Imported the scanned images.")

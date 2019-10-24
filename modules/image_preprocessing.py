@@ -13,11 +13,13 @@ except ImportError:
     os.system("pip3 install numpy")
     import numpy
 
+
 def processing(mlp2):
     # STEP 1.1
     processed_story = []
     lines = line_finder()
-    white_square = cv2.imread("special_char/white_square.jpg", cv2.IMREAD_GRAYSCALE)
+    white_square = cv2.imread("special_char/white_square.jpg",
+                              cv2.IMREAD_GRAYSCALE)
     for line in lines:
         files = char_segmentation(line)
         handwritten_story = []
@@ -36,17 +38,18 @@ def processing(mlp2):
                 else:
                     x = x - (h-w)//2
                     img = img[y:y+h, x:x+h]
-            #saving images to disk for easier debugging
+            # saving images to disk for easier debugging
             cv2.imwrite("images/center/img" + str(iterator) + ".jpg", img)
             img = cv2.resize(img, (28, 28), interpolation=cv2.INTER_CUBIC)
             processed_story.append(img)
             iterator += 1
         processed_story.append(white_square)
     print("Processed the scanned images.")
-    #saving images to disk for easier debugging
+    # saving images to disk for easier debugging
     iterator_1 = 0
     for letter_image in processed_story:
-        cv2.imwrite("images/final_image/img" + str(iterator_1) + ".jpg", letter_image)
+        cv2.imwrite("images/final_image/img" + str(iterator_1) + ".jpg",
+                    letter_image)
         iterator_1 += 1
     # STEP 1.3
     iterator = 0

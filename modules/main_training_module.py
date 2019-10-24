@@ -47,21 +47,21 @@ y_train, y_test = y[:60000], y[60000:70000]
 x_train = x_train.reshape(60000, 784)
 x_test = x_test.reshape(10000, 784)
 
+
 def training():
     if not os.path.exists("mlp2.joblib"):
         mlp2 = MLPClassifier(hidden_layer_sizes=(250,
-                                                250,
-                                                250,
-                                                250,
-                                                250,
-                                                250,),
-                            max_iter=1000, alpha=1e-4,
-                            solver="sgd", verbose=1, tol=1e-4, random_state=1,
-                            learning_rate_init=.1)
+                                                 250,
+                                                 250,
+                                                 250,
+                                                 250,
+                                                 250,),
+                             max_iter=1000, alpha=1e-4,
+                             solver="sgd", verbose=1, tol=1e-4, random_state=1,
+                             learning_rate_init=.1)
         mlp2.fit(x_train, y_train)
         print("Training set score: %f" % mlp2.score(x_train, y_train))
         print("Test set score: %f" % mlp2.score(x_test, y_test))
-        
         dump(mlp2, "mlp2.joblib")
     else:
         mlp2 = load("mlp2.joblib")

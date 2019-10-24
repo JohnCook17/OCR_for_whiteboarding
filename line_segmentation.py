@@ -15,7 +15,7 @@ def line_finder():
                                         cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     cv2.imwrite("test/t1.jpg", img)
     cv2.imwrite("test/t2.jpg", img)
-    img = cv2.GaussianBlur(img,(51,51), 0)
+    img = cv2.GaussianBlur(img, (51, 51), 0)
     cv2.imwrite("test/t3.jpg", img)
     height, width = img.shape
     start = 0
@@ -32,7 +32,7 @@ def line_finder():
                 if line.mean() > 1:
                     list_of_lines.append(line)
             start = 0
-    j = 0        
+    j = 0
     for i in list_of_lines:
         print(j)
         cv2.imwrite("test/" + str(j) + "line.jpg", i)
