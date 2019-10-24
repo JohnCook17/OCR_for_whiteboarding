@@ -20,8 +20,33 @@ try:
 except ImportError:
     os.system("pip3 install numpy")
     import numpy
+try:
+    from emnist import extract_training_samples
+except ImportError:
+    os.system("git clone https://github.com/sorki/python-mnist")
+    os.system("./python-mnist/get_data.sh")
+    os.system("pip3 install emnist")
+    from emnist import extract_training_samples
 
-def demo(x_train, y_train, x_test, y_test):
+# STEP 1.1
+# Grab the data from the OpenML website
+# x will be our images and y will be the labels
+x, y = extract_training_samples("letters")
+
+# Make sure that every pixel in all of the images is a value between 0 and 1
+x = x / 255.
+
+# Use the first 60000 instances as training and the next 10000 as testing
+x_train, x_test = x[:60000], x[60000:70000]
+y_train, y_test = y[:60000], y[60000:70000]
+
+# There is one other thing we need to do, we need to
+# record the number of samples in each dataset and the number of pixels in
+# each image
+x_train = x_train.reshape(60000, 784)
+x_test = x_test.reshape(10000, 784)
+
+def demo():
     """
     A demo of my machine learning program
     """
