@@ -76,7 +76,7 @@ def char_segmentation(img):
             letter = img[0: height, start:end]
             letter_height, letter_width = letter.shape
             # make this if dynamic by using the letter mean at some point
-            if letter.mean() > .25:
+            if numpy.any(letter) and letter.mean() > .25:
                 M = cv2.moments(letter)
                 letter_mid = int(M["m01"] / M["m00"])
                 letter_up = letter_mid

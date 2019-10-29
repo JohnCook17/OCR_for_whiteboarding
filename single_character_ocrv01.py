@@ -9,7 +9,7 @@ my_input = "waiting"
 while my_input != "0":
     print("Enter a coresponding number for that option")
     print("1. Demo")
-    print("2. Run Main training algorithm")
+    print("2. Run Main Program")
     print("3. Delete Demo training data")
     print("4. Delete Main traning data")
     print("5. Help")
@@ -35,4 +35,4 @@ while my_input != "0":
         else:
             print("changed your mind?")
     elif my_input == "5":
-        print("please put images in single_letters to have them recognized.")
+        print("please put image in the folder 'image_to_ocr' and name it img.jpg to perform ocr on it.")

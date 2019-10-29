@@ -49,6 +49,7 @@ x_test = x_test.reshape(10000, 784)
 
 
 def training():
+    """The main training module"""
     if not os.path.exists("mlp2.joblib"):
         mlp2 = MLPClassifier(hidden_layer_sizes=(250,
                                                  250,
