@@ -137,3 +137,26 @@ def demo():
             typed_story = typed_story + str(chr(prediction[0] + 96))
     print("Conversion to typed story complete!")
     print(typed_story)
+
+    print("Improved version:")
+    mlp2 = load("mlp2.joblib")
+    typed_story = ""
+    for letter in handwritten_story:
+        letter = cv2.resize(letter, (28, 28), interpolation=cv2.INTER_CUBIC)
+        # this bit of code checks to see if the image is just a blank space by
+        # looking at the color of all the pixels summed
+        total_pixel_value = 0
+        for j in range(28):
+            for k in range(28):
+                total_pixel_value += letter[j, k]
+        if total_pixel_value < 20:
+            typed_story = typed_story + " "
+        # if it NOT a blank, it actually runs the prediction algorithm on it
+        else:
+            single_item_array = (numpy.array(letter)).reshape(1, 784)
+            prediction = mlp2.predict(single_item_array)
+            typed_story = typed_story + str(chr(prediction[0] + 96))
+    print("Conversion to typed story complete!")
+    print(typed_story)
+    print("Actual text:")
+    print("The Fault in Our Power Supplies I fell in love the way your battery dies slowly and then all at once")
