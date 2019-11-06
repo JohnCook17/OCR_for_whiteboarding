@@ -48,9 +48,7 @@ x_test = x_test.reshape(10000, 784)
 
 
 def demo():
-    """
-    A demo of my machine learning program
-    """
+    """ A demo of my machine learning program """
     if not os.path.exists("mlp1.joblib"):
         # This creates our first MLP 1 hidden layer with 50 neurons and sets
         # it to run through the data 20 times
@@ -63,6 +61,7 @@ def demo():
         print("Created our first MLP network")
 
         # STEP 1.1
+        # This is where the training takes place
         mlp1.fit(x_train, y_train)
         print("Training set score: %f" % mlp1.score(x_train, y_train))
         print("Test set score: %f" % mlp1.score(x_test, y_test))
