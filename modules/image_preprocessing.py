@@ -61,9 +61,9 @@ def processing(mlp2):
     # saving images to disk for easier debugging
     # iterator_1 = 0
     # for letter_image in processed_story:
-        # cv2.imwrite("images/final_image/img" + str(iterator_1) + ".jpg",
-                    # letter_image)
-        # iterator_1 += 1
+    # cv2.imwrite("images/final_image/img" + str(iterator_1) + ".jpg",
+    # letter_image)
+    # iterator_1 += 1
     # STEP 1.3
     # append a letter or space to the output of the program
     # iterator is just for debugging output

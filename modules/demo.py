@@ -96,7 +96,8 @@ def demo():
     if not os.path.exists("lab1-neural-networks/letters_mod"):
         print("demo data not found getting data")
         # Pulls the scanned data set from GitHub
-        os.system("git clone https://github.com/crash-course-ai/lab1-neural-networks.git")
+        os.system("git clone https://github.com" +
+                  "/crash-course-ai/lab1-neural-networks.git")
         os.system("git pull")
         os.system("ls lab1-neural-networks/letters_mod")
         os.system("pwd")
@@ -158,4 +159,5 @@ def demo():
     print("Conversion to typed story complete!")
     print(typed_story)
     print("Actual text:")
-    print("The Fault in Our Power Supplies I fell in love the way your battery dies slowly and then all at once")
+    print("The Fault in Our Power Supplies I fell in love the ", end="")
+    print("way your battery dies slowly and then all at once")
