@@ -26,11 +26,11 @@ def combine_two_images(img1, img2, anchor_y, anchor_x):
     foreground_height = foreground.shape[0]
     foreground_width = foreground.shape[1]
     # make sure anchors are not outside the bounds of the image
-    if (foreground_height+anchor_y > background_height or
-    foreground_width+anchor_x > background_width):
+    if ((foreground_height+anchor_y > background_height or
+         foreground_width+anchor_x > background_width)):
         raise ValueError("The foreground image exceeds the background" +
                          "boundaries at this location")
-    # set the alpha level of the images to be combined in this case the 
+    # set the alpha level of the images to be combined in this case the
     # forground is supposed to cover the background so it is set to 1
     alpha = 1
 
@@ -60,8 +60,8 @@ def combine_two_images(img1, img2, anchor_y, anchor_x):
     # print(space_width)
     # print(letter_width)
     # if math.isclose(space_width, letter_width, abs_tol=1):
-        # print("adding space")
-        # return square
+    # print("adding space")
+    # return square
 # End unused code
 
 def char_segmentation(img):
@@ -92,7 +92,7 @@ def char_segmentation(img):
             letter = img[0: height, start:end]
             letter_height, letter_width = letter.shape
             # checks if the image is valid and if the mean is not low
-            # then center the image some 
+            # then center the image some
             if numpy.any(letter) and letter.mean() > .25:
                 # finds the letter on the background
                 M = cv2.moments(letter)
@@ -123,8 +123,8 @@ def char_segmentation(img):
                         bottom = letter[letter_down: letter_down + 1,
                                         0: letter_width].mean()
                         letter_down += 1
-                    if (letter_down + 1 == letter_height or
-                    letter_down + 1 > letter_height):
+                    if ((letter_down + 1 == letter_height or
+                         letter_down + 1 > letter_height)):
                         break
                 # crops the image of the letter to have less background
                 letter = letter[letter_up: letter_down, 0: letter_width]
@@ -146,6 +146,6 @@ def char_segmentation(img):
     cv2.imwrite("line_of_letters/inverted_and_blured.jpg", img2)
     # i = 0
     # for img in img_list:
-        # i += 1
-        # cv2.imwrite("test/" + str(i) + ".jpg", img)
+    # i += 1
+    # cv2.imwrite("test/" + str(i) + ".jpg", img)
     return img_list

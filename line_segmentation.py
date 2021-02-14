@@ -37,14 +37,16 @@ def line_finder():
         if horizontal_slice.mean() < 5 and start == 0:
             end = 0
             start = h
-        # if the average is 0 and start has been found but end has not been found
+        # if the average is 0 and start has been found but end has not
+        # been found
         # set end to current location and sets start to not found
         if horizontal_slice.mean() == 0 and start != 0 and end == 0:
             end = h
-            # this line is for making sure that the line is always read from start to 
+            # this line is for making sure that the line is always read from
+            # start to
             # end and that there are errors
             if start < end:
-                # defines where a line is making sure that start and 
+                # defines where a line is making sure that start and
                 # end are not outside the bounds of the image
                 line = img[start - 1: end + 1, 0: width]
                 # if line contains letters append it to list of lines
@@ -53,6 +55,6 @@ def line_finder():
             start = 0
     # j = 0
     # for i in list_of_lines:
-        # cv2.imwrite("test/" + str(j) + "line.jpg", i)
-        # j += 1
+    # cv2.imwrite("test/" + str(j) + "line.jpg", i)
+    # j += 1
     return list_of_lines

@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-print("Importing libraries.")
 # Importing libraries
 import os
 from modules.demo import demo
@@ -52,4 +51,5 @@ while my_input != "0":
             print("changed your mind?")
     # option 5 offers help
     elif my_input == "5":
-        print("please put image in the folder 'image_to_ocr' and name it img.jpg to perform ocr on it.")
+        print("please put image in the folder 'image_to_ocr'")
+        print("and name it img.jpg to perform ocr on it.")
