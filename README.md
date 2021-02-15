@@ -15,7 +15,7 @@ This project's goal was to make a program to read handwriting from a whiteboard 
 # Usage
 
 You must put the image you wish to run the program on in the "image_to_ocr" directory and label it "img.jpg". Then run "./single_character_ocrv01.py", it will take a moment to load all the libraries. It will then present you with the following option menu:
-[![menu](https://i.imgur.com/5whBRMr.jpg)]
+![menu](https://i.imgur.com/5whBRMr.jpg)
 enter the number to the option you wish to run. The demo runs a short demo of the machine learning process. The main program takes the image in "image_to_ocr" that is "img.jpg" and will do its best to extract letters and translate them to text. Note that deleting does not truly delete the file but moves it to the "backups" directory. For best results it is best to supply an image with little to no glare, and low lighting seems to work better then bright lighting. It is best to use capital letters, and put bars on your I's. Currently I have not trained the machine learning algorithm on numbers or punctuation, but plan to eventually. It is also important to be able to draw a vertical line between each letter as this is how the character segmentation works.
 
 # How it works
@@ -40,3 +40,8 @@ Free to use but please give me credit.
    [page]: <https://johncook17.github.io/ocr_for_whiteboards.github.io/>
    [pbs]: <https://github.com/crash-course-ai/lab1-neural-networks>
    [repo]: <https://github.com/JohnCook17/holbertonschool-higher_level_programming>
+
+
+# Version 2.0 coming sometime in the future
+
+Needless to say this program does not work, but it was my first try at anything related to machine learning. With that said I would make some major changes knowing what I know now. I would still go character by character but now I would use a CNN instead of a basic neral network. This is due to the fact that in programming variables can be whatever the programmer wants them to be. This makes word prediction difficult but not impossible. Next I would use some Natural Language Processing to help predict the structure of the code. I would also like to use GANS to train it on characters in mnist that are not common such as the curly bracket. As far as preprocessing goes I would use what I would call an image sticher, to take several images and combine them together to form one composite image, similar to how a smartphone can take a panoramic shot. I would do this because often there is glare, or fuzz or other flaws in the captured image. This would resolve some of those flaws.
